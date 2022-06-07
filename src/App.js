@@ -1,7 +1,21 @@
 import Navbar from "./components/Navbar";
 import MovieCard from "./components/MovieCard";
 import {data} from './data'
-function App() {
+import { useEffect } from "react";
+function App(props) {
+  useEffect(()=>{
+    const {store} = props
+
+    store.subscribe(()=>{
+      console.log('updated')
+    })
+
+    store.dispatch({
+      type:'ADD_MOVIES',
+      movies:data
+    })
+
+  })
   return (
     <div className="App">
      <Navbar/>
