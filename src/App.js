@@ -7,12 +7,12 @@ function App() {
      <Navbar/>
      <div className="main">
        <div className="tabs">
-         <div className="tab"></div>
-         <div className="tab"></div>
+         <div className="tab">MOVIES</div>
+         <div className="tab">FAVOURITES</div>
        </div>
        <div className="List">
-         {data.map((movie)=>{
-          return <MovieCard movie = {movie}/>
+         {data.map((movie,idx)=>{
+          return <MovieCard movie = {movie} key ={idx}/>
          })}
        </div>
      </div>
