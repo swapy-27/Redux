@@ -1,6 +1,14 @@
-export default function movies(state=[],action){
+let intialState= {
+    movies:[],
+    favourites:[]
+}
+
+export default function movies(state=intialState,action){
     if(action.type=== 'ADD_MOVIES'){
-        return action.movies;
+        return {
+            ...state,
+            movies:action.movies
+        }
     }
     return state;
 }

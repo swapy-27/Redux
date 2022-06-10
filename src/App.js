@@ -5,19 +5,20 @@ import React, { useEffect } from "react";
 import { render } from "@testing-library/react";
 import { addMovies } from "./actions";
 class App extends React.Component {
-
+  
   componentDidMount() {
     const { store } = this.props
     store.subscribe(() => {
     
       this.forceUpdate();
     })
-    addMovies(data)
+
+    store.dispatch(addMovies(data))
   }
 
 
   render() {
-    const movies = this.props.store.getState();
+    const {movies} = this.props.store.getState();
     
 
     return (
