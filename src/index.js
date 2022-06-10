@@ -6,7 +6,7 @@ import App from './App';
 import movies from './reducers';
 
 const store = createStore(movies);
-console.log(store)
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
