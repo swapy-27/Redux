@@ -1,14 +1,33 @@
-let intialState= {
-    movies:[],
-    favourites:[]
+import { ADD_FAVOURITE, ADD_MOVIES, REMOVE_FAVOURITE } from "../actions";
+
+let intialState = {
+    movies: [],
+    favourites: []
 }
 
-export default function movies(state=intialState,action){
-    if(action.type=== 'ADD_MOVIES'){
-        return {
-            ...state,
-            movies:action.movies
-        }
+export default function movies(state = intialState, action) {
+    switch (action.type) {
+        case ADD_MOVIES:
+            return {
+                ...state,
+                movies: action.movies
+            }
+
+
+        case ADD_FAVOURITE:
+            return {
+                ...state,
+                favourites: [action.favourite, ...state.favourites]
+            }
+
+        case REMOVE_FAVOURITE:
+            return {
+                ...state,
+                favourites: [action.favourite, ...state.favourites]
+            }
+        default:
+            return state;
     }
-    return state;
+
 }
+
