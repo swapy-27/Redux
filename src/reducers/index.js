@@ -21,10 +21,15 @@ export default function movies(state = intialState, action) {
             }
 
         case REMOVE_FAVOURITE:
+            const newState = state.favourites.filter((val) => {
+                return val !== action.favourite;
+            })
             return {
                 ...state,
-                favourites: [action.favourite, ...state.favourites]
+                favourites: newState
             }
+
+
         default:
             return state;
     }

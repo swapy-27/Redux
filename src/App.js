@@ -45,7 +45,7 @@ class App extends React.Component {
   }
   render() {
     const { movies, favourites } = this.props.store.getState();
-    console.log(movies, favourites, this.state)
+   
     return (
 
       <div className="App">
