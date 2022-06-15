@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import  { createStore} from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import App from './App';
-import  { rootReducer } from './reducers';
+import { rootReducer } from './reducers';
+const logger = ({ dispatch, getState }) => (next) => (action) => {
+  console.log('ACTION_TYPE', action.type);
+  next(action);
+}
+const store = createStore(rootReducer, applyMiddleware(logger));
 
-const store = createStore(rootReducer);
-console.log(store.getState())
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
