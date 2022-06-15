@@ -36,7 +36,7 @@ class App extends React.Component {
 
   isMovieFavourite = (movie) => {
 
-    const { favourites } = this.props.store.getState();
+    const { favourites } = this.props.store.getState().movies;
 
     if (favourites.indexOf(movie) !== -1) {
       return true
@@ -44,8 +44,8 @@ class App extends React.Component {
     return false
   }
   render() {
-    const { movies, favourites } = this.props.store.getState();
-   
+    const { movies} = this.props.store.getState();
+    const {list,favourites}=movies;
     return (
 
       <div className="App">
@@ -57,7 +57,7 @@ class App extends React.Component {
           </div>
           <div className="List">
             {this.state.favPage
-              ? movies.map((movie, idx) => {
+              ? list.map((movie, idx) => {
                 return <MovieCard movie={movie} key={idx} dispatch={this.props.store.dispatch} isFav={this.isMovieFavourite(movie)} />
               })
               : favourites.map((movie, idx) => {

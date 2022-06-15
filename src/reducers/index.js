@@ -1,16 +1,17 @@
 import { ADD_FAVOURITE, ADD_MOVIES, REMOVE_FAVOURITE } from "../actions";
 
 let intialState = {
-    movies: [],
-    favourites: []
+    list: [],
+    favourites: [],
+    // showFav:true
 }
 
-export default function movies(state = intialState, action) {
+export  function movies(state = intialState, action) {
     switch (action.type) {
         case ADD_MOVIES:
             return {
                 ...state,
-                movies: action.movies
+                list: action.movies
             }
 
 
@@ -35,4 +36,19 @@ export default function movies(state = intialState, action) {
     }
 
 }
-
+const initialSearchState={
+    result:{}
+}
+export function search(state=initialSearchState,action){
+return state
+}
+const initialRootState={
+    movies:intialState,
+    search:initialSearchState
+}
+export function rootReducer(state=initialRootState,action){
+    return {
+        movies:movies(state.movies,action),
+        search:search(state.search,action)
+    }
+}
