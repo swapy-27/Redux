@@ -46,10 +46,13 @@ class App extends React.Component {
   render() {
     const { movies} = this.props.store.getState();
     const {list,favourites}=movies;
+    const dispatch =this.props.store.dispatch;
+ 
     return (
 
       <div className="App">
-        <Navbar />
+        <Navbar dispatch={dispatch}/>
+
         <div className="main">
           <div className="tabs">
             <div className="tab" onClick={this.handleMovieBtnClick}>MOVIES</div>
