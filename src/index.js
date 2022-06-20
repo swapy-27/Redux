@@ -4,6 +4,7 @@ import thunk from 'redux-thunk'
 import { createStore, applyMiddleware } from 'redux'
 import App from './App';
 import { rootReducer } from './reducers';
+import { createContext } from 'react';
 const logger = ({ dispatch, getState }) => (next) => (action) => {
 
   if (typeof (action) !== 'function') {
@@ -21,11 +22,23 @@ const store = createStore(rootReducer, applyMiddleware(logger,thunk));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-
-
+export  const   StoreContext = createContext();
+console.log(StoreContext);
+class Provider extends React.Component{
+  render(){
+    const {store } = this.props;
+    return (
+      <StoreContext.Provider value={store}>
+        {this.props.children}
+      </StoreContext.Provider>
+    )
+  }
+}
 root.render(
-  <React.StrictMode>
-    <App store={store} />
-  </React.StrictMode>
+  <Provider store={store}>
+      <App store={store} />
+  </Provider>
+  
+
 );
 
