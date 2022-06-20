@@ -4,6 +4,7 @@ import { data } from './data'
 import React, { useEffect } from "react";
 import { render } from "@testing-library/react";
 import { addFavourites, addMovies } from "./actions";
+import { StoreContext } from ".";
 
 class App extends React.Component {
   state = {
@@ -77,4 +78,14 @@ class App extends React.Component {
 
 }
 
-export default App;
+class AppWrapper extends React.Component{
+  render(){
+    return (
+      <StoreContext.Consumer>
+        {(store) => <App store={store}/>}
+      </StoreContext.Consumer>
+    )
+  }
+}
+
+export default AppWrapper;
