@@ -22,14 +22,14 @@ class App extends React.Component {
 
   handleFavouriteBtnClick = () => {
 
-  
-    this.setState({'favPage':false})
+
+    this.setState({ 'favPage': false })
 
   }
   handleMovieBtnClick = () => {
 
- 
-    this.setState({'favPage':true})
+
+    this.setState({ 'favPage': true })
 
   }
 
@@ -44,14 +44,17 @@ class App extends React.Component {
     return false
   }
   render() {
-    const { movies} = this.props.store.getState();
-    const {list,favourites}=movies;
-    const dispatch =this.props.store.dispatch;
- 
+    const { movies } = this.props.store.getState();
+    const { list, favourites } = movies;
+    const dispatch = this.props.store.dispatch;
+
+    const search = this.props.store.getState().search;
+
+
     return (
 
       <div className="App">
-        <Navbar dispatch={dispatch}/>
+        <Navbar dispatch={dispatch} search={search} />
 
         <div className="main">
           <div className="tabs">
@@ -64,7 +67,7 @@ class App extends React.Component {
                 return <MovieCard movie={movie} key={idx} dispatch={this.props.store.dispatch} isFav={this.isMovieFavourite(movie)} />
               })
               : favourites.map((movie, idx) => {
-                return <MovieCard movie={movie} key={idx} dispatch={this.props.store.dispatch} isFav={true}/>
+                return <MovieCard movie={movie} key={idx} dispatch={this.props.store.dispatch} isFav={true} />
               })}
           </div>
         </div>
